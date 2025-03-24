@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/teams")
 public class TeamController {
 
-    private TeamService teamService;
+    private final TeamService teamService;
 
     public TeamController(TeamService teamService) {
         this.teamService = teamService;
@@ -43,7 +43,7 @@ public class TeamController {
 
     }
 
-    @PostMapping("/{teamId}/projects/{projectId}")
+    @PutMapping("/{teamId}/projects/{projectId}")
     public ResponseEntity<TeamDTO> assignProject (@PathVariable Long teamId,
     @PathVariable Long projectId) {
 
