@@ -47,12 +47,7 @@ public class ProjectController {
     @PutMapping("/{projectId}")
     public ResponseEntity<ProjectDTO> updateProject(@PathVariable("projectId") Long projectId,
                                                     @RequestBody ProjectDTO projectDTO) {
-        try {
-            // Asegurarse de que el ID del DTO coincide con el del PathVariable
-            if (projectDTO.getProjectId() != projectId) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body(null);  // El ID del proyecto no coincide con el proporcionado
-            }
+
 
             // Llamar al servicio para actualizar el proyecto
             ProjectDTO updatedProjectDTO = projectService.updateProjectDTO(projectDTO);
@@ -60,10 +55,6 @@ public class ProjectController {
             // Retornar el DTO actualizado
             return ResponseEntity.ok(updatedProjectDTO);  // Respuesta exitosa con el DTO actualizado
 
-        } catch (Exception e) {
-            // Manejo de errores
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
     }
 }
 

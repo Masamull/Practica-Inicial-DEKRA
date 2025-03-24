@@ -24,4 +24,11 @@ public class EmailValueRepositoryImp implements EmailRepository {
         emails.add(emailValue);
         return emailValue;
     }
+
+    @Override
+    public EmailValue deleteEmailValue(EmailValue emailValue) {
+
+        emails.remove(emailValue);
+        return emailValue;
+    }
 }

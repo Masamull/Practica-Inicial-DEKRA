@@ -43,6 +43,17 @@ public class TeamController {
 
     }
 
+    @PostMapping("/{teamId}/projects/{projectId}")
+    public ResponseEntity<TeamDTO> assignProject (@PathVariable Long teamId,
+    @PathVariable Long projectId) {
+
+
+        TeamDTO assignedTeam = teamService.assignProject(teamId, projectId);
+
+        return ResponseEntity.ok(assignedTeam);
+
+    }
+
 
     @GetMapping
     public ResponseEntity<List<TeamDTO>> listTeams() {

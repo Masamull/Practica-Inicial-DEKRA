@@ -10,6 +10,6 @@ public interface EmailRepository {
 
     List<EmailValue> emailValueList();
     EmailValue saveEmailValue(EmailValue emailValue);
-
+    EmailValue deleteEmailValue(EmailValue emailValue);
 
 }
