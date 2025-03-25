@@ -80,26 +80,33 @@ public class ProjectService {
 
             if (project.getProjectId() == projectDTO.getProjectId()) {
 
-                projectDTO.setProjectVersions(project.getProjectVersion());
+
+
+
+                projectDTO.setProjectVersionAuto(projectDTO.getProjectVersions());
+
 
                 logService.createLog("PROJECT-UPDATE","The project that was name" +
                        project.getProjectName() + "is now named " + projectDTO.getProjectName());
 
 
+
+
+
             }
+
+
 
 
         }
 
-        Project p =  convertProjectDTOtoProject(projectDTO);
+        Project p = convertProjectDTOtoProject(projectDTO);
 
         projectRepository.updateProject(p);
 
         ProjectDTO projectDTO1 = convertProjecttoProjectDTO(p);
 
         return projectDTO1;
-
-
 
 
     }

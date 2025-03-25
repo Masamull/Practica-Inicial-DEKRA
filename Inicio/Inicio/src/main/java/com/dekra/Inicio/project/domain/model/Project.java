@@ -34,41 +34,48 @@ public class Project {
 
 
     public List<ProjectVersion> setProjectVersionAuto(List<ProjectVersion> projectVersions) {
-        if (projectVersions == null || projectVersions.isEmpty()) {
-            // Si la lista de versiones está vacía, asigna la primera versión: projectId + 0.1
+        if (projectVersions == null) {
+            projectVersions = new LinkedList<>();
+        }
+        if (projectVersions.isEmpty()) {
+            // Primera versión: projectId + 0.1
             ProjectVersion firstVersion = new ProjectVersion();
-            firstVersion.setProjectVersionNumber(projectId + 0.1f);  // Primera versión
+            firstVersion.setProjectVersionNumber(this.projectId + 0.1f);  // Usamos this.ProjectId para obtener el id actual
             firstVersion.setFechaCambio(LocalDateTime.now());
+            // Asignamos los datos del proyecto
+            firstVersion.setProjectId(this.projectId);
+            firstVersion.setProjectName(this.projectName);
+            firstVersion.setEmail(this.email);
+            // Si ProjectVersion tiene otros campos, se pueden asignar de forma similar
             projectVersions.add(firstVersion);
         } else {
             // Si ya existen versiones, obtenemos la última versión y sumamos 0.1
             ProjectVersion lastVersion = projectVersions.get(projectVersions.size() - 1);
             float lastVersionNumber = lastVersion.getProjectVersionNumber();
 
-            // Separar la parte entera y la decimal
             int major = (int) lastVersionNumber;  // Parte entera
             int minor = (int) ((lastVersionNumber - major) * 10);  // Parte decimal
 
-            // Si la parte decimal es menor que 9, aumentamos la parte decimal
             if (minor < 9) {
                 minor++;
             } else {
-                // Si la parte decimal es 9, subimos la parte entera
                 major++;
                 minor = 0;
             }
-
-            // Nueva versión
             float nextVersion = major + minor / 10.0f;
 
             ProjectVersion newVersion = new ProjectVersion();
             newVersion.setProjectVersionNumber(nextVersion);
             newVersion.setFechaCambio(LocalDateTime.now());
+            // También aquí asignamos los datos del proyecto
+            newVersion.setProjectId(this.projectId);
+            newVersion.setProjectName(this.projectName);
+            newVersion.setEmail(this.email);
+
             projectVersions.add(newVersion);
         }
 
         return projectVersions;
-
     }
 
     @Override
