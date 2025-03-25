@@ -18,15 +18,16 @@ import java.util.Set;
 @Service
 public class ProjectService {
 
-    private ProjectRepository projectRepository;
-    private EmailValueService emailValueService;
-    private LogService logService;
+    private final ProjectRepository projectRepository;
+    private final EmailValueService emailValueService;
+    private final LogService logService;
 
     public ProjectService(ProjectRepository projectRepository,
-            EmailValueService emailValueService){
+            EmailValueService emailValueService, LogService logService){
 
         this.projectRepository = projectRepository;
         this.emailValueService = emailValueService;
+        this.logService = logService;
     }
 
     public List<ProjectDTO> listProjects() {
@@ -82,7 +83,8 @@ public class ProjectService {
                 projectDTO.setProjectVersions(project.getProjectVersion());
 
                 logService.createLog("PROJECT-UPDATE","The project that was name" +
-                        project.getProjectName() + "is now named " + projectDTO.getProjectName());
+                       project.getProjectName() + "is now named " + projectDTO.getProjectName());
+
 
             }
 

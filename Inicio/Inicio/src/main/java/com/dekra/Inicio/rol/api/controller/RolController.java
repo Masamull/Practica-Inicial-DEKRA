@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/rols")
 public class RolController {
 
-    private RolService rolService;
+    private final RolService rolService;
 
     public RolController(RolService rolService) {
 

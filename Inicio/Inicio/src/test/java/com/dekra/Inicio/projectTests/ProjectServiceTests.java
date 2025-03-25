@@ -35,7 +35,7 @@ public class ProjectServiceTests {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        projectService = new ProjectService(projectRepository, emailValueService);
+        projectService = new ProjectService(projectRepository, emailValueService,logService);
 
     }
 
