@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @AllArgsConstructor
@@ -68,6 +69,19 @@ public class Project {
 
         return projectVersions;
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Project project = (Project) o;
+        return Objects.equals(projectId, project.projectId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(projectId);
     }
 
 }
